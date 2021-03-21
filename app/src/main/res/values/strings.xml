@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ProjectGithon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="homeFragment">This is Home Fragment</string>
+    <string name="JobFragemt">This is Job Fragment</string>
+    <string name="chatFragment">This is Chat Fragment</string>
 </resources>

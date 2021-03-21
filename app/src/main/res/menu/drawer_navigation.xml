@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="View Courses"
+        android:icon="@drawable/ic_baseline_library_books_24"
+        android:id="@+id/view_courses_activity"/>
+    <item
+        android:title="View Jobs"
+        android:icon="@drawable/ic_baseline_business_center_24"
+        android:id="@+id/view_jobs_activity"/>
+    <item
+        android:title="Connection"
+        android:icon="@drawable/ic_baseline_connect_without_contact_24"
+        android:id="@+id/get_connected"/>
+    <item
+        android:title="Extras">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:title="Check Your Skill"
+                    android:icon="@drawable/ic_baseline_grading_24"
+                    android:id="@+id/check_skills"/>
+                <item
+                    android:title="Latest Notifivation"
+                    android:icon="@drawable/ic_baseline_notifications_active_24"
+                    android:id="@+id/notification_latest"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>
