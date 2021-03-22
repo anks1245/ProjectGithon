@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="navigation">#E53835</color>
+    <color name="top_navigation">#A61715</color>
     <color name="trans_color">#2F000000</color>
 </resources>

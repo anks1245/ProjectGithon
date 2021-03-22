@@ -33,7 +33,7 @@ class SplashScreen : AppCompatActivity() {
         val transanim = AnimationUtils.loadAnimation(this,R.anim.splash_anim)
         textView.startAnimation(transanim)
         Handler().postDelayed({
-            val intent = Intent(this@SplashScreen, MainActivity::class.java)
+            val intent = Intent(this@SplashScreen, LoginActivity::class.java)
             for (i in 0 until 100){
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                     progressSplash.progress = i
