@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -14,7 +17,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.ankitapi.projectgithon.fragments.ChatsFragment
 import com.ankitapi.projectgithon.fragments.HomeFragment
 import com.ankitapi.projectgithon.fragments.JobPostFragment
-import com.ankitapi.projectgithon.helper.toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigation : NavigationView
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var menuItem: MenuItem
+    private lateinit var profileButton1 : ImageView
+//    private lateinit var profileButton2: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,16 +39,28 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         drawerLayout = findViewById(R.id.drawerLayout)
         navigation = findViewById(R.id.nvView)
+        profileButton1 = findViewById(R.id.buttonProfile)
+//        profileButton2 = navigation.findViewById(R.id.view_profile_from_drawer)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
+        profileButton1.setOnClickListener {
+            startActivity(Intent(this,ProfileActivity::class.java))
+        }
+//        profileButton2.setOnClickListener {
+//            startActivity(Intent(this,ProfileActivity::class.java))
+//        }
         setSupportActionBar(toolbar)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
         openFragment(homeFragment)
+        toolbar.showOverflowMenu()
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.view_courses_activity -> {
                     startActivity(Intent(this,CourseActivity::class.java))
+                    true
+                }R.id.view_profile_from_drawer -> {
+                    startActivity(Intent(this,ProfileActivity::class.java))
                     true
                 }else -> {
                     false
@@ -78,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.overflow_menu,menu)
+//        menuInflater.inflate(R.menu.overflow_menu,menu)
         return true
     }
 

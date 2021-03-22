@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Profile"
-        android:id="@+id/user_profile"/>
+        android:id="@+id/user_profile"
+        android:orderInCategory="1"/>
     <item android:title="My Space"
-        android:id="@+id/user_space"/>
+        android:id="@+id/user_space"
+        android:orderInCategory="2"/>
     <item  android:id="@+id/user_Logout"
-        android:title="Logout"/>
+        android:title="Logout"
+        android:orderInCategory="2"/>
 </menu>
