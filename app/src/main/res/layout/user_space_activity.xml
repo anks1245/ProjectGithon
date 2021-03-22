@@ -36,5 +36,36 @@
         android:textStyle="bold"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="10dp"/>
-    
+    <ImageView
+        android:id="@+id/file_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resume"
+        android:src="@drawable/ic_baseline_insert_drive_file_24"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="11dp"/>
+    <TextView
+        android:id="@+id/resume_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resume"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/file_image"
+        app:layout_constraintTop_toBottomOf="@id/recyclerview"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="13dp"/>
+    <TextView
+        android:id="@+id/upload_file_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload File"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/resume_textview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerview"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="13dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
