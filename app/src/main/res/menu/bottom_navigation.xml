@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/home_frag_button"/>
+    <item
+        android:title="Job Post"
+        android:icon="@drawable/ic_baseline_add_business_24"
+        android:id="@+id/jobpost_frag_button"/>
+    <item
+        android:title="Chats"
+        android:icon="@drawable/ic_baseline_chat_bubble_24"
+        android:id="@+id/chat_button"/>
+</menu>

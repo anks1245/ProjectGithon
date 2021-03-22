@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ankitapi.projectgithon">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectGithon">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ProfileActivity"
+            android:theme="@style/Theme.ProjectGithon1"
+            android:label="Profile">
+
+        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".CourseActivity"
+            android:theme="@style/Theme.ProjectGithon1" />
+        <activity
+            android:name=".SplashScreen"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
