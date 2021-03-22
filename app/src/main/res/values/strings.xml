@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProjectGithon</string>
+    <string name="text">Java is a high-level programming language developed by Sun Microsystems. Instead, Java programs are interpreted by the Java Virtual Machine, or JVM, which runs on multiple platforms. ... This means all Java programs are multiplatform and can run on different platforms, including Macintosh, Windows, and Unix computers.19-Apr-2012</string>
+    <string name="ankit_ram_nag">Ankit Ram Nag</string>
 </resources>
