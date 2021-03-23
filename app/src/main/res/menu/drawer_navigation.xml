@@ -32,5 +32,9 @@
             </group>
         </menu>
     </item>
+    <item
+        android:title="Sign Out"
+        android:icon="@drawable/ic_baseline_lock_24"
+        android:id="@+id/account_signOut"/>
 
 </menu>

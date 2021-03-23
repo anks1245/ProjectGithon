@@ -1,6 +1,8 @@
 package com.ankitapi.projectgithon
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerToggle: ActionBarDrawerToggle
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var menuItem: MenuItem
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var profileButton1 : ImageView
     private  var  doublePressedback =false
 //    private lateinit var profileButton2: TextView
@@ -45,19 +48,20 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawerLayout)
         navigation = findViewById(R.id.nvView)
         profileButton1 = findViewById(R.id.buttonProfile)
+        sharedPreferences = getSharedPreferences("loginSharepref",Context.MODE_PRIVATE)
 //        drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.JobFragemt,R.string.homeFragment)
 //        drawerLayout.setDrawerListener(drawerToggle)
 //        drawerToggle.syncState()
 //        profileButton2 = navigation.findViewById(R.id.view_profile_from_drawer)
         bottomNavigationView = findViewById(R.id.bottom_navigation)
-        profileButton1.setOnClickListener {
-            startActivity(Intent(this,ProfileActivity::class.java))
-        }
+    profileButton1.setOnClickListener {
+        startActivity(Intent(this,ProfileActivity::class.java))
+    }
         //start of header of drawer layout
         val hView : View = navigation.getHeaderView(0)
         val userNametextView : TextView= hView.findViewById(R.id.user_name)
         val viewProfileTextView : TextView = hView.findViewById(R.id.view_profile_from_drawer)
-        userNametextView.text= "Ankit"
+        userNametextView.text = "Ankit"
         viewProfileTextView.setOnClickListener {
             startActivity(Intent(this , ProfileActivity::class.java))
         }
@@ -69,13 +73,19 @@ class MainActivity : AppCompatActivity() {
         toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24)
         openFragment(homeFragment)
         toolbar.showOverflowMenu()
+        val sharePrefEditor : SharedPreferences.Editor = sharedPreferences.edit()
         navigation.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.view_courses_activity -> {
                     startActivity(Intent(this,CourseActivity::class.java))
                     true
-                }R.id.view_profile_from_drawer -> {
-                    startActivity(Intent(this,ProfileActivity::class.java))
+                }R.id.account_signOut -> {
+                    sharePrefEditor.clear()
+                    val intent = Intent(this,LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    sharePrefEditor.apply()
+                    finish()
                     true
                 }else -> {
                     false

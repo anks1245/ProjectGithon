@@ -30,7 +30,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ankit_ram_nag"
+                    android:text="Ankit Ram Nag"
                     android:textSize="15sp"
                     app:layout_constraintLeft_toRightOf="@id/imageView"
                     app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/imageView"
-                    android:text="@string/text"
+                    android:text="Desc"
                     android:padding="15dp"
                     android:textColor="@color/black"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,7 +108,7 @@
                 android:layout_marginRight="15dp"
                 android:textColor="@color/black"
                 android:background="#D3D3D3"
-                android:text="@string/text"
+                android:text="text"
                 android:layout_marginTop="5dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

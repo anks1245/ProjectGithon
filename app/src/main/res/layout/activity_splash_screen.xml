@@ -17,7 +17,7 @@
         android:src="@drawable/logo"/>
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView_splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Job Solution"
@@ -35,6 +35,6 @@
         android:id="@+id/progress_splash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@+id/textView_splash"
         android:layout_margin="25dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
