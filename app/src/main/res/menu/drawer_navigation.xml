@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_baseline_business_center_24"
         android:id="@+id/view_jobs_activity"/>
     <item
+        android:title="Ask Our Mentors"
+        android:icon="@drawable/ic_baseline_contacts_24"
+        android:id="@+id/ask_mentors"/>
+    <item
         android:title="Connection"
         android:icon="@drawable/ic_baseline_connect_without_contact_24"
         android:id="@+id/get_connected"/>
@@ -28,5 +32,9 @@
             </group>
         </menu>
     </item>
+    <item
+        android:title="Sign Out"
+        android:icon="@drawable/ic_baseline_lock_24"
+        android:id="@+id/account_signOut"/>
 
 </menu>
