@@ -10,4 +10,5 @@
     <color name="navigation">#E53835</color>
     <color name="top_navigation">#A61715</color>
     <color name="trans_color">#2F000000</color>
+    <color name="job_type">#CFFFFFFF</color>
 </resources>
