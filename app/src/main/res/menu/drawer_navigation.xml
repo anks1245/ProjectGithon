@@ -7,7 +7,7 @@
     <item
         android:title="View Jobs"
         android:icon="@drawable/ic_baseline_business_center_24"
-        android:id="@+id/view_jobs_activity"/>
+        android:id="@+id/view_jobs"/>
     <item
         android:title="Ask Our Mentors"
         android:icon="@drawable/ic_baseline_contacts_24"

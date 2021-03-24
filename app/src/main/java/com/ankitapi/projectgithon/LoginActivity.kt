@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -36,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
         pass = findViewById(R.id.login_pass_edittext)
         checkBox = findViewById(R.id.remember)
         requestQueue = Volley.newRequestQueue(this)
+        progrssBar = findViewById(R.id.login_progress)
         sharedPreferences = getSharedPreferences(sharepref,Context.MODE_PRIVATE)
         val getEmail = email.text
         val getPass = pass.text
@@ -50,7 +52,9 @@ class LoginActivity : AppCompatActivity() {
 
         val sharePrefEditor : SharedPreferences.Editor = sharedPreferences.edit()
         buttonLogin.setOnClickListener {
+            progrssBar.visibility = View.VISIBLE
             val stringRequest = object : StringRequest(Request.Method.POST, LOGIN , Response.Listener { response ->
+                progrssBar.visibility =View.INVISIBLE
                 sharePrefEditor.clear()
                 sharePrefEditor.apply()
                 Log.d(TAG , "onResponse1 $response")
@@ -103,7 +107,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun convertJson(userJson: JSONObject) {
-
-    }
 }

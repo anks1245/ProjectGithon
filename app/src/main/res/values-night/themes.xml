@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.ProjectGithon" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/navigation</item>
+        <item name="colorPrimary">#AE2C2A</item>
         <item name="colorPrimaryVariant">@color/top_navigation</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
@@ -17,7 +17,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">#E53835</item>
         <item name="colorPrimaryVariant">#BF0300</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">#252525</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>

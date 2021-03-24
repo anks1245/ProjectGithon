@@ -1,60 +1,118 @@
 package com.ankitapi.projectgithon.fragments
 
+import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.ankitapi.projectgithon.QuizActivity
 import com.ankitapi.projectgithon.R
+import com.ankitapi.projectgithon.connection.ConnectionActivity
+import com.ankitapi.projectgithon.connection.MentorsActivity
+import com.ankitapi.projectgithon.course.CourseActivity
+import com.ankitapi.projectgithon.helper.GET_COURSES
+import com.ankitapi.projectgithon.helper.GET_MENTORS
+import com.ankitapi.projectgithon.helper.GET_TOPICS
+import com.ankitapi.projectgithon.helper.toast
+import com.ankitapi.projectgithon.jobs.JobsActivity
+import com.google.android.material.button.MaterialButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val TAG = "HomeFragment"
+    private lateinit var requestQueue : RequestQueue
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var viewJobsButton : MaterialButton
+    private lateinit var viewCourseButton : MaterialButton
+    private lateinit var askMentorButton : MaterialButton
+    private lateinit var connectionButton : MaterialButton
+    private lateinit var eduSpaceButton : MaterialButton
+    private lateinit var skillsButton : MaterialButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        swipeRefreshLayout = view.findViewById(R.id.swipeToRefreshHome)
+        viewJobsButton = view.findViewById(R.id.view_jobs_internship)
+        viewCourseButton = view.findViewById(R.id.view_courses_from_home)
+        askMentorButton = view.findViewById(R.id.ask_mentor_home)
+        connectionButton = view.findViewById(R.id.connection_home)
+        eduSpaceButton = view.findViewById(R.id.eduspace_home)
+        skillsButton = view.findViewById(R.id.improve_your_skills)
+        requestQueue = Volley.newRequestQueue(this.requireContext())
+
+        viewJobsButton.setOnClickListener{
+            startActivity(Intent(it.context, JobsActivity::class.java))
+        }
+        viewCourseButton.setOnClickListener {
+            startActivity(Intent(it.context, CourseActivity::class.java))
+        }
+        askMentorButton.setOnClickListener {
+            startActivity(Intent(it.context, MentorsActivity::class.java))
+        }
+        connectionButton.setOnClickListener {
+            startActivity(Intent(it.context, ConnectionActivity::class.java))
+        }
+        eduSpaceButton.setOnClickListener {
+            it.context.toast("yet to be implimented")
+        }
+        skillsButton.setOnClickListener {
+            startActivity(Intent(it.context, QuizActivity::class.java))
+        }
+
+        loadTrendingTopics()
+        loadCourses()
+        loadMentors()
+
+        swipeRefreshLayout.setOnRefreshListener {
+
+            loadTrendingTopics()
+            loadCourses()
+            loadMentors()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+    private fun loadMentors() {
+        val stringRequest =  StringRequest(Request.Method.POST, GET_COURSES, Response.Listener { response ->
+            context?.toast(response)
+        }, Response.ErrorListener { error ->
+            Log.e(TAG,"onResponseError ${error.message}")
+        } )
+        requestQueue.add(stringRequest)
     }
+
+    private fun loadCourses() {
+        val stringRequest =  StringRequest(Request.Method.POST, GET_MENTORS, Response.Listener { response ->
+            context?.toast(response)
+        }, Response.ErrorListener { error ->
+            Log.e(TAG,"onResponseError ${error.message}")
+        } )
+        requestQueue.add(stringRequest)
+    }
+
+    private fun loadTrendingTopics() {
+        val stringRequest =  StringRequest(Request.Method.POST, GET_TOPICS, Response.Listener { response ->
+            context?.toast(response)
+        }, Response.ErrorListener { error ->
+            Log.e(TAG,"onResponseError ${error.message}")
+        } )
+        requestQueue.add(stringRequest)
+    }
+
 }

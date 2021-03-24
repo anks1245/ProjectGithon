@@ -47,7 +47,7 @@
                 android:id="@+id/remember"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remeber"
+                android:text="Remember"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/navigation"
                 android:textAlignment="textStart"
@@ -74,8 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@+id/login_main_cardView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
     <androidx.cardview.widget.CardView

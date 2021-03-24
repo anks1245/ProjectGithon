@@ -1,7 +1,8 @@
-package com.ankitapi.projectgithon
+package com.ankitapi.projectgithon.course
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ankitapi.projectgithon.R
 
 class CourseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

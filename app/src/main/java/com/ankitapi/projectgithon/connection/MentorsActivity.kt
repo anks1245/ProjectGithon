@@ -1,16 +1,17 @@
-package com.ankitapi.projectgithon
+package com.ankitapi.projectgithon.connection
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.ankitapi.projectgithon.R
 
-class QuizActivity : AppCompatActivity(){
+class MentorsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_quiz)
+        setContentView(R.layout.activity_mentors2)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.title = "Check Your Skill"
+        supportActionBar?.title = "Mentors"
     }
 
     override fun onSupportNavigateUp(): Boolean {

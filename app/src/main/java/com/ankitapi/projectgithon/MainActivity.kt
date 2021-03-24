@@ -5,29 +5,36 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.HandlerCompat.postDelayed
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.ankitapi.projectgithon.connection.ConnectionActivity
+import com.ankitapi.projectgithon.connection.MentorsActivity
 import com.ankitapi.projectgithon.fragments.ChatsFragment
 import com.ankitapi.projectgithon.fragments.HomeFragment
 import com.ankitapi.projectgithon.fragments.JobPostFragment
 import com.ankitapi.projectgithon.helper.toast
+import com.ankitapi.projectgithon.course.CourseActivity
+import com.ankitapi.projectgithon.helper.NAME
+import com.ankitapi.projectgithon.jobs.JobsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = "HomeFragment"
     private lateinit var drawerLayout : DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var navigation : NavigationView
@@ -49,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         navigation = findViewById(R.id.nvView)
         profileButton1 = findViewById(R.id.buttonProfile)
         sharedPreferences = getSharedPreferences("loginSharepref",Context.MODE_PRIVATE)
+        val userName = sharedPreferences.getString(NAME,"username")
+        Log.d(TAG,"check : ${userName.toString()}")
 //        drawerToggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.JobFragemt,R.string.homeFragment)
 //        drawerLayout.setDrawerListener(drawerToggle)
 //        drawerToggle.syncState()
@@ -61,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         val hView : View = navigation.getHeaderView(0)
         val userNametextView : TextView= hView.findViewById(R.id.user_name)
         val viewProfileTextView : TextView = hView.findViewById(R.id.view_profile_from_drawer)
-        userNametextView.text = "Ankit"
+        userNametextView.text = userName
         viewProfileTextView.setOnClickListener {
             startActivity(Intent(this , ProfileActivity::class.java))
         }
@@ -75,19 +84,51 @@ class MainActivity : AppCompatActivity() {
         toolbar.showOverflowMenu()
         val sharePrefEditor : SharedPreferences.Editor = sharedPreferences.edit()
         navigation.setNavigationItemSelectedListener {
-            when(it.itemId){
+            when(it.itemId) {
                 R.id.view_courses_activity -> {
-                    startActivity(Intent(this,CourseActivity::class.java))
+                    startActivity(Intent(this, CourseActivity::class.java))
                     true
-                }R.id.account_signOut -> {
-                    sharePrefEditor.clear()
-                    val intent = Intent(this,LoginActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                    sharePrefEditor.apply()
-                    finish()
+                }
+                R.id.account_signOut -> {
+
+                        val builder = AlertDialog.Builder(this)
+                        builder.setTitle("Attention")
+                        //set message for alert dialog
+                        builder.setMessage("Are you sure to Logout??")
+                        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+                        builder.setPositiveButton("Yes") { dialogInterface, which ->
+                            sharePrefEditor.clear()
+                            val intent = Intent(this,LoginActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                            sharePrefEditor.apply()
+                            finish()
+                            Toast.makeText(applicationContext, "Logout Sucessfully", Toast.LENGTH_LONG).show()
+                        }
+
+                        //performing negative action
+                        builder.setNegativeButton("No") { dialogInterface, which ->
+                        }
+                        val alertDialog: AlertDialog = builder.create()
+                        alertDialog.setCancelable(false)
+                        alertDialog.show()
+                        true
+                
+                }R.id.view_jobs ->{
+                    startActivity(Intent(this, JobsActivity::class.java))
                     true
-                }else -> {
+                }R.id.ask_mentors -> {
+                    startActivity(Intent(this, MentorsActivity::class.java))
+                    true
+                }R.id.get_connected -> {
+                    startActivity(Intent(this, ConnectionActivity::class.java))
+                    true
+                }R.id.check_skills -> {
+                    startActivity(Intent(this, QuizActivity::class.java))
+                    true
+                }
+                else -> {
                     false
                 }
             }
