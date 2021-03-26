@@ -2,6 +2,7 @@ package com.ankitapi.projectgithon.course
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,7 +60,6 @@ class CourseActivity : AppCompatActivity() {
                     layoutManager = LinearLayoutManager(this@CourseActivity,LinearLayoutManager.VERTICAL,false)
                     adapter = courseAdapter
                 }
-
             }
         },Response.ErrorListener { error ->
             Log.e(TAG , "onErrorResponse ${error.message}")
