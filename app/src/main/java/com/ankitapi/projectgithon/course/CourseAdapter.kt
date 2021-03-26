@@ -1,5 +1,6 @@
 package com.ankitapi.projectgithon.course
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +29,13 @@ class CourseAdapter(private val courseArrayList: ArrayList<CourseModel>) : Recyc
     override fun onBindViewHolder(holder: CourseRecyclerViewHolder, position: Int) {
         holder.courseName.text = courseArrayList[position].courseName
         holder.coursePrice.text = courseArrayList[position].coursePrice
+        val desc = courseArrayList[position].courseDesc
         val imageUrl = "http://ankitapi.xyz/EduGo/courseImage/"+courseArrayList[position].courseImage
         Glide.with(holder.itemView.context).load(imageUrl).placeholder(R.drawable.logo).into(holder.courseImage)
         holder.itemView.setOnClickListener {
-            it.context.toast(courseArrayList[position].courseName)
+//            it.context.toast(courseArrayList[position].courseName)
+            val intent = Intent(holder.itemView.context , FullCourseDesc::class.java)
+            it.context.startActivity(intent)
         }
     }
 

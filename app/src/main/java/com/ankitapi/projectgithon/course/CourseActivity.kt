@@ -60,6 +60,8 @@ class CourseActivity : AppCompatActivity() {
                     layoutManager = LinearLayoutManager(this@CourseActivity,LinearLayoutManager.VERTICAL,false)
                     adapter = courseAdapter
                 }
+                //courseRecyclerView.layoutmanager.
+                //courseRecyclerView.adapter
             }
         },Response.ErrorListener { error ->
             Log.e(TAG , "onErrorResponse ${error.message}")
