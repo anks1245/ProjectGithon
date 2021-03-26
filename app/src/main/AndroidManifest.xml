@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectGithon"
         android:usesCleartextTraffic="true">
+        <activity android:name=".RegisterActivity"
+            android:launchMode="singleInstance" />
         <activity android:name=".connection.MentorsActivity"
             android:theme="@style/Theme.ProjectGithon1">
 

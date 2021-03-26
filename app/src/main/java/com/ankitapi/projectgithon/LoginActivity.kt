@@ -6,10 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -30,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private var isRemember = "0"
     private lateinit var sharedPreferences :SharedPreferences
     private lateinit var progrssBar: ProgressBar
+    private lateinit var toRegisterActivity : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
@@ -38,6 +36,7 @@ class LoginActivity : AppCompatActivity() {
         checkBox = findViewById(R.id.remember)
         requestQueue = Volley.newRequestQueue(this)
         progrssBar = findViewById(R.id.login_progress)
+        toRegisterActivity = findViewById(R.id.toRegisterActivity)
         sharedPreferences = getSharedPreferences(sharepref,Context.MODE_PRIVATE)
         val getEmail = email.text
         val getPass = pass.text
@@ -49,7 +48,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         buttonLogin = findViewById(R.id.buttonLogin)
-
+        toRegisterActivity.setOnClickListener {
+            val intent = Intent(this , RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         val sharePrefEditor : SharedPreferences.Editor = sharedPreferences.edit()
         buttonLogin.setOnClickListener {
             progrssBar.visibility = View.VISIBLE

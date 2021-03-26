@@ -76,15 +76,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:background="@color/navigation"
                     android:text="Register"
                     android:textColor="@color/white"/>
+
                 <TextView
+                    android:id="@+id/toLoginActivity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:gravity="end"
                     android:text="Login from here if you have account"
-                    android:textAlignment="textEnd"
-                    android:gravity="end" />
+                    android:textAlignment="textEnd" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <ProgressBar
