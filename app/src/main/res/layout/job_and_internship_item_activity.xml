@@ -4,9 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginTop="5dp">
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="#DEDEDE">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +27,6 @@
             app:layout_constraintLeft_toRightOf="@id/work_image"
             app:layout_constraintTop_toTopOf="parent"
             android:text="Infosys"
-            android:textColor="@color/black"
             android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"/>
@@ -39,7 +37,6 @@
             app:layout_constraintTop_toBottomOf="@id/company_name"
             app:layout_constraintLeft_toLeftOf="parent"
             android:text="Posted-by :-"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="5dp"/>
@@ -50,7 +47,6 @@
             app:layout_constraintTop_toBottomOf="@id/company_name"
             app:layout_constraintLeft_toRightOf="@id/posted_by"
             android:text="Krishnamurthy Shankar"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="5dp"/>
         <TextView
@@ -60,7 +56,6 @@
             app:layout_constraintTop_toBottomOf="@id/posted_by_name"
             app:layout_constraintLeft_toLeftOf="parent"
             android:text="Requirement: "
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="5dp"/>
@@ -71,7 +66,6 @@
             app:layout_constraintTop_toBottomOf="@id/posted_by_name"
             app:layout_constraintLeft_toRightOf="@id/requirement"
             android:text="Android Developer. Backend Developer"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="5dp"/>
         <TextView
@@ -81,7 +75,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/requirement_positions"
             android:text="View More..."
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"/>

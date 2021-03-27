@@ -3,12 +3,15 @@ package com.ankitapi.projectgithon.jobs
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Request.*
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.ankitapi.projectgithon.R
 import com.ankitapi.projectgithon.helper.JOBS
 import org.json.JSONArray
 
@@ -19,10 +22,14 @@ class JobsActivity : AppCompatActivity(){
     private lateinit var recyclerView: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_jobs)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.title = "Jobs"
+        requestQueue = Volley.newRequestQueue(this)
+        recyclerView = findViewById(R.id.jobs_recyclerView)
+        loadData()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -48,6 +55,10 @@ class JobsActivity : AppCompatActivity(){
                 val jobs = JobsViewModel(jobUplaodid, jobUploadedBy, jobName, companyName, jobImage, job_desc, job_valid, job_type, job_like, job_applied, job_uploaded_at)
                 jobsArrayList.add(jobs)
                 jobsAdapter = JobsAdapter(jobsArrayList)
+                recyclerView.apply {
+                    layoutManager = LinearLayoutManager(this@JobsActivity,LinearLayoutManager.VERTICAL,false)
+                    adapter = jobsAdapter
+                }
             }
         },Response.ErrorListener { error ->
             Log.e("error","Error")
