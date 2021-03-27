@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitapi.projectgithon.R
 import com.ankitapi.projectgithon.course.CourseModel
+import com.ankitapi.projectgithon.course.FullCourseDesc
 import com.ankitapi.projectgithon.helper.toast
 import com.bumptech.glide.Glide
 
@@ -24,14 +25,14 @@ class CourseFragAdapter(private val courseModelArrayList: ArrayList<CourseModel>
         return CourseAdapterViewHolder(view)
     }
 
-
     override fun onBindViewHolder(holder: CourseAdapterViewHolder, position: Int) {
         holder.courseName.text = courseModelArrayList[position].courseName
         holder.coursePrice.text = courseModelArrayList[position].coursePrice
         val imageUrl = "http://ankitapi.xyz/EduGo/courseImage/"+courseModelArrayList[position].courseImage
         Glide.with(holder.itemView.context).load(imageUrl).placeholder(R.drawable.logo).into(holder.courseImage)
         holder.itemView.setOnClickListener {
-//            val intent = Intent(it.context , )
+            val intent = Intent(it.context , FullCourseDesc::class.java)
+            it.context.startActivity(intent)
         }
     }
 
