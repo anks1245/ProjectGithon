@@ -28,6 +28,8 @@
                 android:id="@+id/login_email_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:inputType="textEmailAddress"
                 android:layout_marginTop="5dp"
                 android:drawableLeft="@drawable/ic_baseline_email_24"/>
             <TextView

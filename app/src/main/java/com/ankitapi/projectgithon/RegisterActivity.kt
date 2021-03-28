@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import com.android.volley.RequestQueue
@@ -61,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerAccount(name: String, email: String, pass: String) {
-        toast(name + email + pass)
+//        toast(name + email + pass)
         val stringRequest = object :StringRequest(Method.POST, REGISTER_API,Response.Listener { response ->
             val jsonObject = JSONObject(response)
             var msg=""
@@ -73,7 +74,8 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-            toast(msg)
+
+            Toast.makeText(this , msg ,Toast.LENGTH_LONG).show()
 
         },Response.ErrorListener {error ->
                 toast(error.message)

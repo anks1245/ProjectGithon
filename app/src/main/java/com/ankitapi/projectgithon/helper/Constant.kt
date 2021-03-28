@@ -7,6 +7,7 @@ const val GET_TOPICS = "http://ankitapi.xyz/EduGo/v1/GetGD.php"
 const val UPDATE_PROFILE = "http://ankitapi.xyz/EduGo/v1/UpdateUser.php"
 const val REGISTER_API = "http://ankitapi.xyz/EduGo/v1/registerApi.php"
 const val JOBS ="http://ankitapi.xyz/EduGo/v1/getAllJobs.php"
+const val JOB_LIKE = "http://ankitapi.xyz/EduGo/v1/postlike.php"
 
 const val NAME = "sharePrefName"
 const val EMAIL = "sharePrefEmail"

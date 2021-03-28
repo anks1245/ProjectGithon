@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ProjectGithon"
         android:usesCleartextTraffic="true">
         <activity android:name=".course.FullCourseDesc"
-            android:theme="@style/Theme.ProjectGithon1"></activity>
+            android:theme="@style/Theme.ProjectGithon"></activity>
         <activity
             android:name=".RegisterActivity"
             android:launchMode="singleInstance" />
