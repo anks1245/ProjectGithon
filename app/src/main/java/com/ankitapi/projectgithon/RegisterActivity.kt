@@ -48,12 +48,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
         button.setOnClickListener {
-            if (name.toString() == "" || email.toString() == "" || password.toString() == ""){
-                nameInput.error = "missing field"
-                emailInput.error = "missing field"
-                pass.error = "missing field"
-                return@setOnClickListener
-            }
+
             if (password.toString() != cpassword.toString()){
                 cpass.error = "Password Didn't Match"
                 return@setOnClickListener
