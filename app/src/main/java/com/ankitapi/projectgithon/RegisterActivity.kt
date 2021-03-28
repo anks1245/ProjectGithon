@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.register_activity)
         toLoginActivity = findViewById(R.id.toLoginActivity)
         nameInput = findViewById(R.id.name_edittext)
-        emailInput = findViewById(R.id.login_email)
+        emailInput = findViewById(R.id.login_email_register)
         pass = findViewById(R.id.login_pass_edittext)
         cpass = findViewById(R.id.confirm_pass_edittext)
         button = findViewById(R.id.buttonRegister)
@@ -61,6 +61,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun registerAccount(name: String, email: String, pass: String) {
+        toast(name + email + pass)
         val stringRequest = object :StringRequest(Method.POST, REGISTER_API,Response.Listener { response ->
             val jsonObject = JSONObject(response)
             var msg=""
