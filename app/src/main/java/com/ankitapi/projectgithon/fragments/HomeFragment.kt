@@ -17,14 +17,18 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.ankitapi.projectgithon.GDViewModel
 import com.ankitapi.projectgithon.QuizActivity
 import com.ankitapi.projectgithon.R
 import com.ankitapi.projectgithon.connection.ConnectionActivity
+import com.ankitapi.projectgithon.connection.MentorViewModel
 import com.ankitapi.projectgithon.connection.MentorsActivity
 import com.ankitapi.projectgithon.course.CourseActivity
 import com.ankitapi.projectgithon.course.CourseAdapter
 import com.ankitapi.projectgithon.course.CourseModel
 import com.ankitapi.projectgithon.fragments.frag_adapters.CourseFragAdapter
+import com.ankitapi.projectgithon.fragments.frag_adapters.MentorHomeFragAdapter
+import com.ankitapi.projectgithon.fragments.frag_adapters.TrendingTopicsFragAdapter
 import com.ankitapi.projectgithon.helper.GET_COURSES
 import com.ankitapi.projectgithon.helper.GET_MENTORS
 import com.ankitapi.projectgithon.helper.GET_TOPICS
@@ -46,6 +50,12 @@ class HomeFragment : Fragment() {
     private var coursesArrayList : ArrayList<CourseModel> = ArrayList()
     private lateinit var courseAdapter : CourseFragAdapter
     private lateinit var courseRecyclerView : RecyclerView
+    private var mentorsArrayList : ArrayList<MentorViewModel> = ArrayList()
+    private lateinit var mentorHomeRecyclerView : RecyclerView
+    private lateinit var mentorAdapter : MentorHomeFragAdapter
+    private lateinit var trendinTopicsAdapter : TrendingTopicsFragAdapter
+    private lateinit var trendingtopicsRecyclerView: RecyclerView
+    private var trendingTopicsArrayList : ArrayList<GDViewModel> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +71,8 @@ class HomeFragment : Fragment() {
         eduSpaceButton = view.findViewById(R.id.eduspace_home)
         skillsButton = view.findViewById(R.id.improve_your_skills)
         courseRecyclerView = view.findViewById(R.id.get_course_recyclerview)
+        mentorHomeRecyclerView = view.findViewById(R.id.mentor_home_recycler_view)
+        trendingtopicsRecyclerView = view.findViewById(R.id.trending_topics_recyclerView)
         requestQueue = Volley.newRequestQueue(this.requireContext())
 
         viewJobsButton.setOnClickListener{
@@ -88,6 +100,8 @@ class HomeFragment : Fragment() {
 
         swipeRefreshLayout.setOnRefreshListener {
             coursesArrayList.clear()
+            mentorsArrayList.clear()
+            trendingTopicsArrayList.clear()
             loadTrendingTopics()
             loadCourses()
             loadMentors()
@@ -99,10 +113,38 @@ class HomeFragment : Fragment() {
 
 
     private fun loadMentors() {
-        val stringRequest =  StringRequest(Request.Method.POST, GET_COURSES, Response.Listener { response ->
-            val jsonArray = JSONArray(response)
+        val stringRequest =  StringRequest(Request.Method.POST, GET_MENTORS, Response.Listener { response ->
 //            toast(jsonArray.length().toString())
+                val jsonArray = JSONArray(response)
+                for (i in 0 until 5){
+                    val jsonObject = jsonArray.getJSONObject(i)
+                    val mentorId:String = jsonObject.getString("mentor_id")
+                    val mentorName:String = jsonObject.getString("mentor_name")
+                    val mentorImage:String = jsonObject.getString("mentor_image")
+                    val mentorDesc:String = jsonObject.getString("mentor_desc")
+                    val mentorEmail:String = jsonObject.getString("mentor_email")
+                    val mentorDetails = MentorViewModel(mentorName = mentorName ,
+                            mentorImage =  mentorImage,
+                            mentorDesc = mentorDesc,
+                            mentorEmail = mentorEmail)
+                    mentorsArrayList.add(mentorDetails)
+                    mentorAdapter = MentorHomeFragAdapter(mentorsArrayList)
 
+                    mentorHomeRecyclerView.apply {
+                        layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.HORIZONTAL,false)
+                        adapter = mentorAdapter
+                    }
+                }
+        }, Response.ErrorListener { error ->
+            Log.e(TAG,"onResponseError ${error.message}")
+        } )
+        requestQueue.add(stringRequest)
+    }
+
+    private fun loadCourses() {
+        val stringRequest =  StringRequest(Request.Method.POST, GET_COURSES, Response.Listener { response ->
+//            context?.toast(response)
+            val jsonArray = JSONArray(response)
             for (i in 0 until 5){
                 val jsonObject = jsonArray.getJSONObject(i)
                 val courseName = jsonObject.getString("course_name")
@@ -116,7 +158,7 @@ class HomeFragment : Fragment() {
                 courseAdapter = CourseFragAdapter(coursesArrayList)
                 courseRecyclerView.apply {
                     layoutManager = LinearLayoutManager(view?.context,
-                        LinearLayoutManager.HORIZONTAL,false)
+                            LinearLayoutManager.HORIZONTAL,false)
                     adapter = courseAdapter
                 }
             }
@@ -126,18 +168,25 @@ class HomeFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
-    private fun loadCourses() {
-        val stringRequest =  StringRequest(Request.Method.POST, GET_MENTORS, Response.Listener { response ->
-            context?.toast(response)
-        }, Response.ErrorListener { error ->
-            Log.e(TAG,"onResponseError ${error.message}")
-        } )
-        requestQueue.add(stringRequest)
-    }
-
     private fun loadTrendingTopics() {
         val stringRequest =  StringRequest(Request.Method.POST, GET_TOPICS, Response.Listener { response ->
-            context?.toast(response)
+//            context?.toast(response)
+            val jsonArray = JSONArray(response)
+            for (i in 0 until 3){
+                val jsonObject = jsonArray.getJSONObject(i)
+                val gId = jsonObject.getString("g_id")
+                val topic = jsonObject.getString("topic")
+                val postedBy = jsonObject.getString("posted_by")
+                val postedAt = jsonObject.getString("posted_at")
+                val allTopics = GDViewModel(gID = gId , postedAt = postedAt ,postedBy = postedBy , topic = topic )
+                trendingTopicsArrayList.add(allTopics)
+
+                trendinTopicsAdapter = TrendingTopicsFragAdapter(trendingTopicsArrayList)
+                trendingtopicsRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(this.context , LinearLayoutManager.VERTICAL ,false)
+                    adapter = trendinTopicsAdapter
+                }
+            }
         }, Response.ErrorListener { error ->
             Log.e(TAG,"onResponseError ${error.message}")
         } )

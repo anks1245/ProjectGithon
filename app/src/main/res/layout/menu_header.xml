@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="User Name"
             android:textStyle="bold"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             app:layout_constraintRight_toLeftOf="@+id/bar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/bar"
             android:text="View Profile"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
