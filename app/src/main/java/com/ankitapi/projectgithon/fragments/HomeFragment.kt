@@ -17,9 +17,11 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.ankitapi.projectgithon.DemoClass
 import com.ankitapi.projectgithon.GDViewModel
 import com.ankitapi.projectgithon.QuizActivity
 import com.ankitapi.projectgithon.R
+import com.ankitapi.projectgithon.RetrofitApi.MyApi
 import com.ankitapi.projectgithon.connection.ConnectionActivity
 import com.ankitapi.projectgithon.connection.MentorViewModel
 import com.ankitapi.projectgithon.connection.MentorsActivity
@@ -36,6 +38,10 @@ import com.ankitapi.projectgithon.helper.toast
 import com.ankitapi.projectgithon.jobs.JobsActivity
 import com.google.android.material.button.MaterialButton
 import org.json.JSONArray
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class HomeFragment : Fragment() {
     private val TAG = "HomeFragment"
@@ -98,6 +104,38 @@ class HomeFragment : Fragment() {
         loadCourses()
         loadMentors()
 
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://ankitapi.xyz/EduGo/v1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val myApi : MyApi = retrofit.create(MyApi::class.java)
+        val call :Call<DemoClass> = myApi.getCourses()
+        call.enqueue(object : Callback<DemoClass>{
+            /**
+             * Invoked for a received HTTP response.
+             *
+             *
+             * Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.
+             * Call [Response.isSuccessful] to determine if the response indicates success.
+             */
+            override fun onResponse(
+                call: Call<DemoClass>,
+                response: retrofit2.Response<DemoClass>
+            ) {
+//                context?.toast(response.toString())
+                Log.e(TAG , "onResponse : $response")
+            }
+
+            /**
+             * Invoked when a network exception occurred talking to the server or when an unexpected
+             * exception occurred creating the request or processing the response.
+             */
+            override fun onFailure(call: Call<DemoClass>, t: Throwable) {
+                Log.e(TAG , "onErrorResponse : ${t.message}")
+            }
+
+        })
         swipeRefreshLayout.setOnRefreshListener {
             coursesArrayList.clear()
             mentorsArrayList.clear()
@@ -151,7 +189,7 @@ class HomeFragment : Fragment() {
                 val courseImage = jsonObject.getString("course_image")
                 val courseDesc = jsonObject.getString("course_desc")
                 val coursePrice = jsonObject.getString("course_price")
-                Log.e(TAG , "onResponse $courseName")
+                Log.d(TAG , "onResponse $courseName")
                 val courses = CourseModel(courseName , courseImage ,courseDesc , coursePrice)
                 coursesArrayList.add(courses)
 
