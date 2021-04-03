@@ -35,6 +35,10 @@ class CourseAdapter(private val courseArrayList: ArrayList<CourseModel>) : Recyc
         holder.itemView.setOnClickListener {
 //            it.context.toast(courseArrayList[position].courseName)
             val intent = Intent(holder.itemView.context , FullCourseDesc::class.java)
+            intent.putExtra("CourseName",courseArrayList[position].courseName)
+            intent.putExtra("CoursePrice",courseArrayList[position].coursePrice)
+            intent.putExtra("ImageURL",imageUrl)
+            intent.putExtra("CourseDesc",desc)
             it.context.startActivity(intent)
         }
     }

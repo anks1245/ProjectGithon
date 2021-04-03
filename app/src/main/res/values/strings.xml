@@ -9,5 +9,6 @@
     <string name="chatFragment">This is Chat Fragment</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="demo">Volley always delivers parsed responses on the main thread. Running on the main thread is convenient for populating UI controls with received data, as you can freely modify UI controls directly from your response handler, but its especially critical to many of the important semantics provided by the library, particularly related to canceling requests.</string>
 
 </resources>

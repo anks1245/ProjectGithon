@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ankitapi.projectgithon.R
+import com.ankitapi.projectgithon.helper.toast
 
 class JobsAdapter(private val jobsArrayList: ArrayList<JobsViewModel>): RecyclerView.Adapter<JobsAdapter.JObsAdapterViewHolder>() {
     inner class JObsAdapterViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
@@ -27,5 +28,8 @@ class JobsAdapter(private val jobsArrayList: ArrayList<JobsViewModel>): Recycler
         holder.company_Name.text = jobsArrayList[position].companyName
         holder.posted_by.text =  jobsArrayList[position].jobUploadedBy
         holder.requirement.text = jobsArrayList[position].job_desc
+        holder.itemView.setOnClickListener {
+            it.context.toast(jobsArrayList[position].companyName)
+        }
     }
 }
