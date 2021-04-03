@@ -1,5 +1,6 @@
 package com.ankitapi.projectgithon.jobs
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +29,14 @@ class JobsAdapter(private val jobsArrayList: ArrayList<JobsViewModel>): Recycler
         holder.company_Name.text = jobsArrayList[position].companyName
         holder.posted_by.text =  jobsArrayList[position].jobUploadedBy
         holder.requirement.text = jobsArrayList[position].job_desc
+        val jobImgUrl = "http://ankitapi.xyz/EduGo/image/" + jobsArrayList[position].jobImage
         holder.itemView.setOnClickListener {
-            it.context.toast(jobsArrayList[position].companyName)
+            val intent = Intent(holder.itemView.context,JobFullDescActivity::class.java)
+            intent.putExtra("HrName",jobsArrayList[position].jobUploadedBy)
+            intent.putExtra("CompanyImage",jobImgUrl)
+            intent.putExtra("CompanyName",jobsArrayList[position].companyName)
+            intent.putExtra("Description",jobsArrayList[position].job_desc)
+            it.context.startActivity(intent)
         }
     }
 }

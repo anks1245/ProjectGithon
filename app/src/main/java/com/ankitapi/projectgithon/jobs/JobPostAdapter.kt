@@ -1,5 +1,6 @@
 package com.ankitapi.projectgithon.jobs
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,16 @@ class JobPostAdapter(val jobArrayList: ArrayList<JobsViewModel>) : RecyclerView.
         holder.jobLike.textOn = null
         holder.jobLike.textOff = null
         var like = "0"
+        val jobImgUrl = "http://ankitapi.xyz/EduGo/image/" + jobArrayList[position].jobImage
+        holder.itemView.setOnClickListener {
+            it.context.toast(jobArrayList[position].companyName)
+            val intent = Intent(holder.itemView.context,JobFullDescActivity::class.java)
+            intent.putExtra("HrName",jobArrayList[position].jobUploadedBy)
+            intent.putExtra("CompanyImage",jobImgUrl)
+            intent.putExtra("CompanyName",jobArrayList[position].companyName)
+            intent.putExtra("Description",jobArrayList[position].job_desc)
+            it.context.startActivity(intent)
+        }
         holder.jobLike.setOnCheckedChangeListener{ _, isChecked ->
             if (isChecked){
                 val stringRequest= object : StringRequest(Method.POST, JOB_LIKE , Response.Listener { response ->
@@ -85,6 +96,8 @@ class JobPostAdapter(val jobArrayList: ArrayList<JobsViewModel>) : RecyclerView.
             }
 
         }
+
+
     }
 
 
