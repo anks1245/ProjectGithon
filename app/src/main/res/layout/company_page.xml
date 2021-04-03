@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     app:cardCornerRadius="10dp"
     android:layout_margin="5dp">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/hr_cardView"
             android:layout_width="match_parent"
@@ -42,7 +54,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="Keishnamusthy Shankar"
                     android:textSize="12sp"
-                    android:textColor="@color/black"
                     android:layout_marginLeft="9dp"
                     android:layout_marginTop="20dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -153,14 +164,7 @@
             android:text=" Android Developer, Backend Developer"
             android:textColor="@color/black"
             android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/requirements"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_margin="10dp"
-            android:text="Volley always delivers parsed responses on the main thread. Running on the main thread is convenient for populating UI controls with received data, as you can freely modify UI controls directly from your response handler, but it's especially critical to many of the important semantics provided by the library, particularly related to canceling requests."/>
+
         <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -169,5 +173,16 @@
             android:layout_marginRight="7dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_baseline_share_24"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/requirements"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="10dp"
+            android:text="@string/demo"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+
+</androidx.core.widget.NestedScrollView>
