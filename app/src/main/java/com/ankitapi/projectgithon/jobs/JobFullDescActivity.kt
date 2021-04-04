@@ -40,7 +40,7 @@ class JobFullDescActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.title = "Profile"
+        supportActionBar?.title = "Jobs"
 
         HrName = findViewById(R.id.JobsHrName)
         CompanyImg = findViewById(R.id.companyImage)
@@ -143,5 +143,10 @@ class JobFullDescActivity: AppCompatActivity() {
             }
         }
         requestQueue.add(stringRequest)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

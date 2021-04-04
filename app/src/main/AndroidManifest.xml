@@ -13,16 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjectGithon"
         android:usesCleartextTraffic="true">
-        <activity android:name=".course.FullCourseDesc"
-            android:theme="@style/Theme.ProjectGithon"></activity>
-        <activity android:name=".jobs.JobFullDescActivity"
-            android:theme="@style/Theme.ProjectGithon1"/>
+        <activity android:name=".connection.ConnectionChatActivity"
+            android:theme="@style/Theme.ProjectGithon1">
+
+        </activity>
+        <activity
+            android:name=".course.FullCourseDesc"
+            android:theme="@style/Theme.ProjectGithon" />
+        <activity
+            android:name=".jobs.JobFullDescActivity"
+            android:theme="@style/Theme.ProjectGithon1" />
         <activity
             android:name=".RegisterActivity"
             android:launchMode="singleInstance" />
         <activity
             android:name=".connection.MentorsActivity"
-            android:theme="@style/Theme.ProjectGithon1"></activity>
+            android:theme="@style/Theme.ProjectGithon1" />
         <activity
             android:name=".connection.ConnectionActivity"
             android:theme="@style/Theme.ProjectGithon1" />
