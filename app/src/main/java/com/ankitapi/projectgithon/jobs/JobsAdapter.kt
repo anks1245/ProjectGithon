@@ -14,6 +14,7 @@ class JobsAdapter(private val jobsArrayList: ArrayList<JobsViewModel>): Recycler
         val company_Name:TextView = itemView.findViewById(R.id.company_name)
         val posted_by:TextView = itemView.findViewById(R.id.posted_by_name)
         val requirement:TextView = itemView.findViewById(R.id.requirement_positions)
+//        val jobLikeCount : TextView = itemView.findViewById()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JObsAdapterViewHolder {
@@ -29,13 +30,16 @@ class JobsAdapter(private val jobsArrayList: ArrayList<JobsViewModel>): Recycler
         holder.company_Name.text = jobsArrayList[position].companyName
         holder.posted_by.text =  jobsArrayList[position].jobUploadedBy
         holder.requirement.text = jobsArrayList[position].job_desc
+
         val jobImgUrl = "http://ankitapi.xyz/EduGo/image/" + jobsArrayList[position].jobImage
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context,JobFullDescActivity::class.java)
+            intent.putExtra("JobId",jobsArrayList[position].jobUplaodid)
             intent.putExtra("HrName",jobsArrayList[position].jobUploadedBy)
             intent.putExtra("CompanyImage",jobImgUrl)
             intent.putExtra("CompanyName",jobsArrayList[position].companyName)
             intent.putExtra("Description",jobsArrayList[position].job_desc)
+            intent.putExtra("JObLikeCount" , jobsArrayList[position].job_like)
             it.context.startActivity(intent)
         }
     }
