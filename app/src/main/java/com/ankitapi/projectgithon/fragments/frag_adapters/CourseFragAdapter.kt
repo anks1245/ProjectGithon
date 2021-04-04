@@ -28,10 +28,15 @@ class CourseFragAdapter(private val courseModelArrayList: ArrayList<CourseModel>
     override fun onBindViewHolder(holder: CourseAdapterViewHolder, position: Int) {
         holder.courseName.text = courseModelArrayList[position].courseName
         holder.coursePrice.text = courseModelArrayList[position].coursePrice
+        val desc = courseModelArrayList[position].courseDesc
         val imageUrl = "http://ankitapi.xyz/EduGo/courseImage/"+courseModelArrayList[position].courseImage
         Glide.with(holder.itemView.context).load(imageUrl).placeholder(R.drawable.logo).into(holder.courseImage)
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context , FullCourseDesc::class.java)
+            intent.putExtra("CourseName",courseModelArrayList[position].courseName)
+            intent.putExtra("CoursePrice",courseModelArrayList[position].coursePrice)
+            intent.putExtra("ImageURL",imageUrl)
+            intent.putExtra("CourseDesc",desc)
             it.context.startActivity(intent)
         }
     }
